@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Repo is served from https://<user>.github.io/New_Portfolio/
-  base: '/New_Portfolio/',
+  // User site repo (jiyaul123.github.io) is served from the root
+  base: '/',
   plugins: [react(), tailwindcss()],
 })
