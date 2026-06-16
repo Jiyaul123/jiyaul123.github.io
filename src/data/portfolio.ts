@@ -88,12 +88,14 @@ export const experience: Experience[] = [
   },
 ]
 
+export type ProjectLink = { label: string; url: string }
+
 export type Project = {
   name: string
   tag: string
   description: string
   stack: string[]
-  link?: { label: string; url: string }
+  links?: ProjectLink[]
 }
 
 export const projects: Project[] = [
@@ -117,7 +119,16 @@ export const projects: Project[] = [
     description:
       'Cross-platform finance application shipped to both the Play Store and App Store. Managed the full release lifecycle — signing, versioning, store listing and updates.',
     stack: ['React Native', 'App Store', 'Play Store', 'CI/CD'],
-    link: { label: 'View on stores', url: '#' },
+    links: [
+      {
+        label: 'App Store',
+        url: 'https://apps.apple.com/us/app/paisewise/id6763265923',
+      },
+      {
+        label: 'Play Store',
+        url: 'https://play.google.com/store/apps/details?id=com.paisewise.app',
+      },
+    ],
   },
 ]
 

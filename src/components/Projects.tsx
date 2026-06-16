@@ -31,6 +31,24 @@ function ProjectRow({ p, i }: { p: Project; i: number }) {
               </span>
             ))}
           </div>
+
+          {p.links && (
+            <div className="mt-6 flex flex-wrap gap-3">
+              {p.links.map((l) => (
+                <a
+                  key={l.url}
+                  href={l.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-hover
+                  className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-4 py-2 text-sm font-medium transition-colors group-hover:border-paper/40 group-hover:text-paper hover:!bg-paper hover:!text-ink"
+                >
+                  {l.label}
+                  <span aria-hidden>↗</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-6 justify-self-end">
@@ -48,11 +66,7 @@ function ProjectRow({ p, i }: { p: Project; i: number }) {
   const cls =
     'reveal group rule relative block overflow-hidden border-b px-2 py-10 transition-colors duration-300 hover:text-paper md:px-6'
 
-  return p.link ? (
-    <a href={p.link.url} data-hover className={cls}>
-      {inner}
-    </a>
-  ) : (
+  return (
     <div data-hover className={cls}>
       {inner}
     </div>
