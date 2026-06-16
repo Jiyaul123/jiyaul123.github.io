@@ -3,6 +3,7 @@ import { useSmoothScroll } from './hooks/useSmoothScroll'
 import Cursor from './components/Cursor'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Marquee from './components/Marquee'
 import About from './components/About'
 import Skills from './components/Skills'
 import Experience from './components/Experience'
@@ -25,6 +26,7 @@ export default function App() {
       <Navbar />
       <main className="relative">
         <Hero />
+        <Marquee />
         <About />
         <Skills />
         <Experience />

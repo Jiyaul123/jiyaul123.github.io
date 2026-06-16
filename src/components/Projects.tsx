@@ -1,114 +1,77 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useReveal } from '../hooks/useReveal'
 import SectionHeading from './SectionHeading'
+import type { Project } from '../data/portfolio'
 import { projects } from '../data/portfolio'
 
-gsap.registerPlugin(ScrollTrigger)
+function ProjectRow({ p, i }: { p: Project; i: number }) {
+  const inner = (
+    <>
+      {/* Sweeping accent fill behind the row on hover */}
+      <span className="absolute inset-0 z-0 origin-left scale-x-0 bg-ink transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
+
+      <div className="relative z-10 grid grid-cols-[2rem_1fr_auto] items-center gap-6">
+        <span className="label text-mist transition-colors group-hover:text-paper/70">
+          0{i + 1}
+        </span>
+
+        <div className="min-w-0">
+          <h3 className="display text-[clamp(1.8rem,4.5vw,3.5rem)] leading-none">
+            {p.name}
+          </h3>
+          <p className="mt-3 max-w-xl text-mist transition-colors group-hover:text-paper/80">
+            {p.description}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1">
+            {p.stack.map((s) => (
+              <span
+                key={s}
+                className="text-sm text-mist transition-colors group-hover:text-paper/70"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-6 justify-self-end">
+          <span className="label hidden text-mist transition-colors group-hover:text-paper/70 md:block">
+            {p.tag}
+          </span>
+          <span className="grid h-12 w-12 place-items-center rounded-full border border-ink/20 text-xl transition-all duration-300 group-hover:border-paper group-hover:bg-paper group-hover:text-ink">
+            ↗
+          </span>
+        </div>
+      </div>
+    </>
+  )
+
+  const cls =
+    'reveal group rule relative block overflow-hidden border-b px-2 py-10 transition-colors duration-300 hover:text-paper md:px-6'
+
+  return p.link ? (
+    <a href={p.link.url} data-hover className={cls}>
+      {inner}
+    </a>
+  ) : (
+    <div data-hover className={cls}>
+      {inner}
+    </div>
+  )
+}
 
 export default function Projects() {
-  const root = useRef<HTMLElement>(null)
-  const track = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading reveal
-      gsap.fromTo(
-        '.reveal',
-        { y: 40, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.9,
-          ease: 'power3.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: root.current,
-            start: 'top 85%',
-            once: true,
-          },
-        }
-      )
-
-      // Horizontal pinned scroll — only on wider screens where it reads well
-      const mm = gsap.matchMedia()
-      mm.add('(min-width: 768px)', () => {
-        const el = track.current
-        if (!el) return
-        const distance = el.scrollWidth - window.innerWidth + 96
-        gsap.to(el, {
-          x: -distance,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: root.current,
-            start: 'top top',
-            end: () => `+=${distance}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        })
-      })
-    }, root)
-
-    return () => ctx.revert()
-  }, [])
+  const ref = useReveal<HTMLElement>(0.1)
 
   return (
-    <section ref={root} id="projects" className="overflow-hidden py-28">
-      <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <SectionHeading index="04" title="Selected Projects" />
-      </div>
+    <section ref={ref} id="projects" className="px-6 py-28 md:px-10">
+      <div className="mx-auto max-w-7xl">
+        <SectionHeading index="04" title="Selected Work" />
 
-      <div
-        ref={track}
-        className="flex flex-col gap-6 px-6 md:flex-row md:gap-8 md:px-12"
-      >
-        {projects.map((p, i) => (
-          <article
-            key={p.name}
-            data-hover
-            className="glass-card reveal group relative flex min-h-[22rem] w-full flex-shrink-0 flex-col justify-between overflow-hidden rounded-3xl p-8 md:w-[34rem]"
-          >
-            <div
-              className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-20 blur-3xl transition-opacity group-hover:opacity-40"
-              style={{
-                background:
-                  i % 3 === 0
-                    ? '#5eead4'
-                    : i % 3 === 1
-                      ? '#818cf8'
-                      : '#f472b6',
-              }}
-            />
-            <div className="relative">
-              <div className="mb-6 flex items-center justify-between">
-                <span className="glass-pill rounded-full px-3 py-1 text-xs uppercase tracking-wider text-accent">
-                  {p.tag}
-                </span>
-                <span className="font-display text-5xl font-bold text-ink/10">
-                  0{i + 1}
-                </span>
-              </div>
-              <h3 className="font-display text-2xl font-bold md:text-3xl">
-                {p.name}
-              </h3>
-              <p className="mt-4 max-w-md text-mist">{p.description}</p>
-            </div>
-
-            <div className="relative mt-6 flex flex-wrap gap-2">
-              {p.stack.map((s) => (
-                <span
-                  key={s}
-                  className="glass-pill rounded-md px-2.5 py-1 text-xs text-mist"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
+        <div className="rule border-t">
+          {projects.map((p, i) => (
+            <ProjectRow key={p.name} p={p} i={i} />
+          ))}
+        </div>
       </div>
     </section>
   )

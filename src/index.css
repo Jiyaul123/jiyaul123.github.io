@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
 @import 'tailwindcss';
 
 @theme {
   --font-display: 'Sora', sans-serif;
   --font-body: 'Outfit', sans-serif;
 
-  /* Light theme palette */
-  --color-paper: #f4f5f8;      /* page background */
-  --color-paper-soft: #ffffff; /* cards / raised surfaces */
-  --color-ink: #0d0f1a;        /* primary text */
-  --color-mist: #5b6172;       /* muted / secondary text */
-  --color-accent: #0d9488;     /* teal — readable on white */
-  --color-accent-2: #6366f1;   /* indigo */
-  --color-accent-3: #db2777;   /* pink */
+  /* Editorial light palette — warm paper, near-black ink, one accent */
+  --color-paper: #f3f1ec;      /* warm off-white page */
+  --color-paper-soft: #faf9f6; /* raised surface */
+  --color-ink: #14130f;        /* near-black primary text */
+  --color-mist: #6b6860;       /* muted secondary */
+  --color-line: #14130f1a;     /* hairline rules */
+  --color-accent: #5b3df5;     /* electric indigo */
+  --color-accent-2: #d6492f;   /* warm red for editorial pops */
 }
 
 @layer base {
@@ -27,15 +27,15 @@
     color: var(--color-ink);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
 
   ::selection {
     background: var(--color-accent);
-    color: #ffffff;
+    color: #fff;
   }
 
-  /* Hide default cursor on devices that support hover/fine pointer */
   @media (hover: hover) and (pointer: fine) {
     body {
       cursor: none;
@@ -48,105 +48,96 @@
     font-family: var(--font-display);
   }
 
-  .text-gradient {
-    background: linear-gradient(
-      120deg,
-      var(--color-accent) 0%,
-      var(--color-accent-2) 50%,
-      var(--color-accent-3) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  /* Tight editorial display heading defaults */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
   }
 
-  /* ---------------------------------------------------------------- *
-   * Liquid Glass — translucent, saturated frosted panels (iOS-style).
-   * The base .glass works everywhere; .glass-card adds the layered
-   * highlights and depth that sell the "liquid" look.
-   * ---------------------------------------------------------------- */
-  .glass {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow:
-      0 8px 32px rgba(13, 15, 26, 0.08),
-      inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  .text-accent-2 {
+    color: var(--color-accent-2);
   }
 
-  .glass-card {
+  /* Outlined / hollow display text for editorial contrast */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-ink);
+  }
+
+  /* Label: small all-caps tracked monospace-ish tag */
+  .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Hairline rule */
+  .rule {
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* ---- Kinetic underline link (sweeps in on hover) ---- */
+  .link-sweep {
     position: relative;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.55),
-      rgba(255, 255, 255, 0.25)
-    );
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow:
-      0 10px 40px rgba(13, 15, 26, 0.1),
-      inset 0 1px 1px rgba(255, 255, 255, 0.8),
-      inset 0 -1px 1px rgba(13, 15, 26, 0.04);
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.4s ease,
-      border-color 0.4s ease;
   }
-
-  /* Specular sheen that runs along the top edge */
-  .glass-card::before {
+  .link-sweep::after {
     content: '';
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.9),
-      rgba(255, 255, 255, 0) 40%
-    );
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
+    left: 0;
+    bottom: -2px;
+    height: 1.5px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-sweep:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
-  .glass-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 255, 255, 0.85);
-    box-shadow:
-      0 20px 60px rgba(13, 15, 26, 0.16),
-      inset 0 1px 1px rgba(255, 255, 255, 0.9),
-      inset 0 -1px 1px rgba(13, 15, 26, 0.05);
+  /* ---- Marquee strip ---- */
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 32s linear infinite;
+  }
+  .marquee-rev {
+    animation-direction: reverse;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 
-  /* Frosted glass pill for buttons / chips */
-  .glass-pill {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow:
-      0 4px 16px rgba(13, 15, 26, 0.06),
-      inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  /* Frosted nav bar */
+  .glass {
+    background: rgba(243, 241, 236, 0.7);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid var(--color-line);
   }
 }
 
-/* Thin minimal scrollbar */
+/* Minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(13, 15, 26, 0.18);
+  background: rgba(20, 19, 15, 0.2);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(13, 15, 26, 0.3);
+  background: rgba(20, 19, 15, 0.35);
 }

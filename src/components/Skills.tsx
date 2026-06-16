@@ -3,29 +3,28 @@ import SectionHeading from './SectionHeading'
 import { skills } from '../data/portfolio'
 
 export default function Skills() {
-  const ref = useReveal<HTMLElement>(0.08)
+  const ref = useReveal<HTMLElement>(0.06)
 
   return (
-    <section ref={ref} id="skills" className="px-6 py-28 md:px-12">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading index="02" title="Skills & Stack" />
+    <section ref={ref} id="skills" className="px-6 py-28 md:px-10">
+      <div className="mx-auto max-w-7xl">
+        <SectionHeading index="02" title="Capabilities" />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {skills.map((group) => (
+        {/* Editorial rows — each capability group is a full-width line */}
+        <div>
+          {skills.map((group, i) => (
             <div
               key={group.title}
               data-hover
-              className="glass-card reveal group rounded-2xl p-6"
+              className="reveal group rule grid grid-cols-1 items-baseline gap-4 border-b py-7 transition-colors last:border-b-0 hover:bg-ink/[0.02] md:grid-cols-[3rem_16rem_1fr]"
             >
-              <h3 className="font-display text-lg font-semibold text-ink">
+              <span className="label text-mist">0{i + 1}</span>
+              <h3 className="display text-2xl transition-transform duration-300 group-hover:translate-x-2 md:text-3xl">
                 {group.title}
               </h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-x-6 gap-y-2">
                 {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="glass-pill rounded-full px-3 py-1 text-sm text-mist transition-colors group-hover:text-ink"
-                  >
+                  <li key={item} className="text-lg text-mist transition-colors group-hover:text-ink">
                     {item}
                   </li>
                 ))}

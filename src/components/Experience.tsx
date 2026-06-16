@@ -3,34 +3,31 @@ import SectionHeading from './SectionHeading'
 import { experience } from '../data/portfolio'
 
 export default function Experience() {
-  const ref = useReveal<HTMLElement>(0.15)
+  const ref = useReveal<HTMLElement>(0.12)
 
   return (
-    <section ref={ref} id="work" className="px-6 py-28 md:px-12">
-      <div className="mx-auto max-w-6xl">
+    <section ref={ref} id="work" className="px-6 py-28 md:px-10">
+      <div className="mx-auto max-w-7xl">
         <SectionHeading index="03" title="Experience" />
 
-        <div className="relative border-l border-ink/12 pl-8 md:pl-12">
+        <div className="rule border-t">
           {experience.map((job) => (
-            <div key={job.role + job.period} className="reveal relative mb-14 last:mb-0">
-              {/* Timeline node */}
-              <span className="absolute -left-[37px] top-1.5 h-3 w-3 rounded-full bg-accent ring-4 ring-accent/15 md:-left-[53px]" />
-
-              <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
-                <h3 className="font-display text-xl font-semibold md:text-2xl">
-                  {job.role}
-                </h3>
-                <span className="text-sm text-mist">{job.period}</span>
+            <div
+              key={job.role + job.period}
+              className="reveal rule grid gap-6 border-b py-10 md:grid-cols-[1fr_1.4fr]"
+            >
+              {/* Left: role + company + period */}
+              <div>
+                <span className="label text-mist">{job.period}</span>
+                <h3 className="display mt-3 text-2xl md:text-3xl">{job.role}</h3>
+                <p className="mt-2 text-accent">{job.company}</p>
               </div>
-              <p className="mt-1 text-accent">{job.company}</p>
 
-              <ul className="mt-4 space-y-2">
+              {/* Right: contributions */}
+              <ul className="space-y-3">
                 {job.points.map((p) => (
-                  <li
-                    key={p}
-                    className="flex gap-3 text-mist"
-                  >
-                    <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent/60" />
+                  <li key={p} className="flex gap-4 text-lg leading-snug text-ink/80">
+                    <span className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
                     <span>{p}</span>
                   </li>
                 ))}
