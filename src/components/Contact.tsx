@@ -72,9 +72,9 @@ export default function Contact() {
         </div>
       </div>
 
-      <footer className="mx-auto mt-24 flex max-w-7xl flex-col items-center justify-between gap-3 pb-10 text-sm text-mist sm:flex-row">
+      <footer className="mx-auto mt-24 flex max-w-7xl flex-col items-center justify-center gap-3 pb-10 text-sm text-mist sm:flex-row">
         <span>© {new Date().getFullYear()} {profile.name}</span>
-        <span>Designed & built with React · GSAP · Three.js · Tailwind</span>
+        {/* <span>Designed & built with React · GSAP · Three.js · Tailwind</span> */}
       </footer>
     </section>
   )
