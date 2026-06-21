@@ -93,32 +93,28 @@ export type ProjectLink = { label: string; url: string }
 export type Project = {
   name: string
   tag: string
+  category: string
   description: string
+  contributions: string[]
   stack: string[]
   links?: ProjectLink[]
 }
 
 export const projects: Project[] = [
   {
-    name: 'AI Voice Billing — Sahayaq',
-    tag: 'On-device AI',
-    description:
-      'Voice-first billing system with real-time, low-latency speech commands and an offline-first architecture for unreliable networks. Integrated on-device facial recognition.',
-    stack: ['Google ML Kit', 'TensorFlow Lite', 'Offline-First', 'React Native'],
-  },
-  {
-    name: 'NixAuth — Web + Mobile',
-    tag: 'Security',
-    description:
-      'Secure authentication platform with RBAC and biometric integrations. Real-time WebRTC proctoring, external fingerprint & IRIS SDKs, and on-device facial recognition.',
-    stack: ['WebRTC', 'RBAC', 'TensorFlow Lite', 'Biometrics'],
-  },
-  {
     name: 'Paisewise',
     tag: 'Production',
+    category: 'Personal Finance Platform',
     description:
-      'Cross-platform finance application shipped to both the Play Store and App Store. Managed the full release lifecycle — signing, versioning, store listing and updates.',
-    stack: ['React Native', 'App Store', 'Play Store', 'CI/CD'],
+      'A cross-platform personal finance app that helps users track and manage their financial activities through actionable tools and insights. Shipped end-to-end to both the App Store and Play Store.',
+    contributions: [
+      'Built mobile app screens and core user workflows from the ground up.',
+      'Integrated REST APIs for live financial data and account syncing.',
+      'Developed a library of reusable, composable UI components.',
+      'Owned the full release lifecycle — signing, versioning and store listings.',
+      'Improved performance and usability across the app.',
+    ],
+    stack: ['React Native', 'TypeScript', 'REST APIs', 'App Store', 'Play Store'],
     links: [
       {
         label: 'App Store',
@@ -129,6 +125,94 @@ export const projects: Project[] = [
         url: 'https://play.google.com/store/apps/details?id=com.paisewise.app',
       },
     ],
+  },
+  {
+    name: 'SynchFit',
+    tag: 'Web + Mobile',
+    category: 'Fitness & Trainer Management Platform',
+    description:
+      'A fitness ecosystem connecting users with professional trainers, while letting fitness businesses manage services, trainer availability and merchandise sales — all in one platform.',
+    contributions: [
+      'Built responsive interfaces across both web and mobile applications.',
+      'Developed flows for trainer discovery, enrollment and service booking.',
+      'Implemented merchandise browsing and purchasing workflows.',
+      'Built the trainer portal: profiles, availability schedules, client interactions and merch sales.',
+      'Integrated REST APIs for dynamic data and improved reusable component architecture.',
+    ],
+    stack: ['React.js', 'React Native', 'TypeScript', 'REST APIs'],
+  },
+  {
+    name: 'Propacity',
+    tag: 'Web App',
+    category: 'Real Estate Lead Management',
+    description:
+      'A real estate platform that helps builders and property agents manage leads, customer interactions and end-to-end sales workflows from a single dashboard.',
+    contributions: [
+      'Developed frontend modules for builders and real estate agents.',
+      'Built lead management dashboards with creation, tracking and follow-ups.',
+      'Implemented customer information management and sales pipeline tracking.',
+      'Integrated APIs for real-time data updates and built reusable UI components.',
+      'Collaborated with backend teams to improve data flow and user experience.',
+    ],
+    stack: ['React.js', 'TypeScript', 'Redux', 'REST APIs'],
+  },
+  {
+    name: 'NixAuth',
+    tag: 'Security',
+    category: 'Authentication & Identity Platform',
+    description:
+      'A secure identity and authentication platform delivering user access management, verification and role-based access control across web and mobile.',
+    contributions: [
+      'Developed authentication interfaces and end-to-end user workflows.',
+      'Integrated secure, API-based authentication flows.',
+      'Worked on role-based access control (RBAC) features.',
+      'Implemented responsive, reusable UI components.',
+      'Improved the security-focused user experience throughout.',
+    ],
+    stack: ['React.js', 'React Native', 'TypeScript', 'APIs', 'RBAC'],
+  },
+  {
+    name: 'Proctoring',
+    tag: 'Real-time',
+    category: 'Online Examination Monitoring',
+    description:
+      'An online assessment platform built to conduct secure, remote examinations with live candidate monitoring and verification capabilities.',
+    contributions: [
+      'Developed the exam interface and candidate-facing workflows.',
+      'Built responsive assessment screens for a range of devices.',
+      'Integrated APIs for exam data management.',
+      'Implemented UI flows for monitoring and verification processes.',
+    ],
+    stack: ['React.js', 'TypeScript', 'Web APIs'],
+  },
+  {
+    name: 'Dhunguru',
+    tag: 'Web + Mobile',
+    category: 'Digital Learning Platform',
+    description:
+      'An e-learning platform providing digital content delivery and learning management, with course dashboards for students and instructors.',
+    contributions: [
+      'Developed learning modules and user dashboards.',
+      'Integrated APIs for courses and user data.',
+      'Created reusable components for consistent UI.',
+      'Improved UI consistency and overall performance.',
+    ],
+    stack: ['React.js', 'React Native', 'APIs'],
+  },
+  {
+    name: 'Sahayaq',
+    tag: 'On-device AI',
+    category: 'Service Platform & AI Voice Billing',
+    description:
+      'A service platform featuring a voice-first billing system — real-time, low-latency speech commands with an offline-first architecture for unreliable networks and on-device facial recognition.',
+    contributions: [
+      'Developed reusable React components and responsive layouts.',
+      'Built a voice-first billing flow with low-latency speech commands.',
+      'Designed an offline-first architecture for unreliable network conditions.',
+      'Integrated on-device facial recognition and backend APIs.',
+      'Optimized page performance and the end-to-end user experience.',
+    ],
+    stack: ['React.js', 'TypeScript', 'Google ML Kit', 'TensorFlow Lite', 'Offline-First'],
   },
 ]
 

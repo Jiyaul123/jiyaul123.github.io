@@ -46,15 +46,6 @@ export default function Contact() {
             </a>
           </div>
           <div>
-            <span className="label text-mist">Phone</span>
-            <a
-              href={`tel:${profile.phone.replace(/\s/g, '')}`}
-              className="link-sweep mt-3 block"
-            >
-              {profile.phone}
-            </a>
-          </div>
-          <div>
             <span className="label text-mist">Social</span>
             <a
               href={profile.linkedin}

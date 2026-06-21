@@ -15,17 +15,35 @@ function ProjectRow({ p, i }: { p: Project; i: number }) {
         </span>
 
         <div className="min-w-0">
-          <h3 className="display text-[clamp(1.8rem,4.5vw,3.5rem)] leading-none">
+          <span className="label block text-mist transition-colors group-hover:text-paper/60">
+            {p.category}
+          </span>
+          <h3 className="mt-2 display text-[clamp(1.8rem,4.5vw,3.5rem)] leading-none">
             {p.name}
           </h3>
-          <p className="mt-3 max-w-xl text-mist transition-colors group-hover:text-paper/80">
+          <p className="mt-3 max-w-2xl text-mist transition-colors group-hover:text-paper/80">
             {p.description}
           </p>
-          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1">
+
+          <ul className="mt-5 grid max-w-2xl gap-2 sm:grid-cols-2">
+            {p.contributions.map((c) => (
+              <li
+                key={c}
+                className="flex gap-2 text-sm leading-snug text-mist transition-colors group-hover:text-paper/75"
+              >
+                <span aria-hidden className="mt-0.5 text-ink/40 transition-colors group-hover:text-paper/50">
+                  ↳
+                </span>
+                <span>{c}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-5 flex flex-wrap gap-2">
             {p.stack.map((s) => (
               <span
                 key={s}
-                className="text-sm text-mist transition-colors group-hover:text-paper/70"
+                className="rounded-full border border-ink/15 px-3 py-1 text-xs font-medium text-mist transition-colors group-hover:border-paper/30 group-hover:text-paper/80"
               >
                 {s}
               </span>
