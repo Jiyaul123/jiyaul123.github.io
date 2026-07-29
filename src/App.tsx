@@ -10,8 +10,7 @@ import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 
-// Three.js is heavy — load the background scene lazily so it doesn't block
-// first paint of the content.
+
 const Background3D = lazy(() => import('./components/Background3D'))
 
 export default function App() {
