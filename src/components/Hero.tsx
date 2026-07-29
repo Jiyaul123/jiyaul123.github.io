@@ -37,8 +37,8 @@ export default function Hero() {
     return () => ctx.revert()
   }, [])
 
-  // Headline reads as the craft, not just the job title
-  const lines = ['Front-End', 'Engineer®']
+  // Headline doubles as the recruiter search term — keep it "React Native"
+  const lines = ['React Native', 'Developer®']
 
   return (
     <section
@@ -54,7 +54,7 @@ export default function Hero() {
         <p className="label hidden text-right text-mist md:block">
           Based in {profile.location}
           <br />
-          {new Date().getFullYear()} — Available
+          <span className="text-accent">{new Date().getFullYear()} — Open to Work</span>
         </p>
       </div>
 
@@ -76,6 +76,8 @@ export default function Hero() {
           <span className="text-ink">animation, accessibility and pixel-tight UI.</span>
           {' '}
           Shipping real-time, AI-powered products to the App Store & Play Store.
+          Currently in <span className="text-ink">Doha, Qatar</span> — open to
+          Senior React Native / Mobile Developer roles.
         </p>
 
         <div className="hero-cta mt-10 flex flex-wrap items-center gap-5">

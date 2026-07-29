@@ -18,7 +18,7 @@ export default function Contact() {
           data-hover
           className="reveal group mt-16 block"
         >
-          <p className="label mb-6 text-mist">Have a project in mind?</p>
+          <p className="label mb-6 text-mist">Hiring mobile developers in Doha?</p>
           <h2 className="display text-[clamp(2.8rem,13vw,12rem)]">
             <span className="block overflow-hidden">
               <span className="inline-flex items-center gap-6">
@@ -59,6 +59,10 @@ export default function Contact() {
           <div>
             <span className="label text-mist">Location</span>
             <p className="mt-3">{profile.location}</p>
+          </div>
+          <div>
+            <span className="label text-mist">Availability</span>
+            <p className="mt-3 text-accent">{profile.availability}</p>
           </div>
         </div>
       </div>

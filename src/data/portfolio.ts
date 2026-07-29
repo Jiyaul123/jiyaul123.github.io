@@ -1,14 +1,15 @@
 export const profile = {
   name: 'Jiyaul Mustaffa',
-  role: 'Senior React Native Engineer',
+  role: 'Senior React Native Developer',
   tagline:
     'Building production-grade, real-time, AI-powered mobile experiences.',
   summary:
-    'Senior React Native Engineer with 4+ years of experience building production-grade, real-time mobile applications. Specialized in voice-enabled systems, WebRTC-based communication, and on-device AI. Proven track record of shipping apps to the Play Store and App Store, with a strong focus on performance, animation, and end-to-end feature ownership.',
-  email: 'mustafaziyaul568@gmail.com',
+    'Senior React Native Developer with 4+ years of experience building production-grade, real-time mobile applications. Specialized in voice-enabled systems, WebRTC-based communication, and on-device AI. Proven track record of shipping apps to the Play Store and App Store, with a strong focus on performance, animation, and end-to-end feature ownership. Currently based in Doha, Qatar and open to Senior React Native / Mobile Developer roles in Qatar — available to join immediately.',
+  email: 'mustafaziyaul391@gmail.com',
   phone: '+91 6202925437',
   linkedin: 'https://linkedin.com/in/jiyaulmustaffa',
-  location: 'India',
+  location: 'Doha, Qatar',
+  availability: 'Open to React Native / Mobile Developer roles in Qatar',
 }
 
 export const stats = [
@@ -21,8 +22,18 @@ export const stats = [
 export type SkillGroup = { title: string; items: string[] }
 
 export const skills: SkillGroup[] = [
-  { title: 'Frontend', items: ['React Native', 'React.js', 'Expo'] },
-  { title: 'Languages', items: ['TypeScript', 'JavaScript', 'Java', 'Python'] },
+  {
+    title: 'Core',
+    items: [
+      'React Native',
+      'TypeScript',
+      'JavaScript',
+      'Mobile App Development',
+      'Redux',
+    ],
+  },
+  { title: 'Frontend', items: ['React.js', 'Expo'] },
+  { title: 'Languages', items: ['Java', 'Python'] },
   {
     title: 'Navigation',
     items: ['Expo Router (file-based)', 'React Navigation'],

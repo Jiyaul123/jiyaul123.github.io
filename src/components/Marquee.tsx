@@ -1,14 +1,14 @@
 const ITEMS = [
-  'React',
   'React Native',
   'TypeScript',
-  'GSAP',
-  'Three.js',
+  'JavaScript',
+  'Redux',
+  'Mobile Apps',
+  'React',
   'WebRTC',
   'UI / UX',
   'Animation',
   'Performance',
-  'Accessibility',
 ]
 
 export default function Marquee() {
